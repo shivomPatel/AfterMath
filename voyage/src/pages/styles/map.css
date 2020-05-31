@@ -1,0 +1,98 @@
+/* map component css */
+
+.map {
+  margin-bottom: 20px;
+  width: 80%;
+  height: 80vh;
+  border: 5px solid gold;
+  border-radius: 6px;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.text-input {
+  width: 20%;
+  background-color: #2b5267;
+  height: 80vh;
+  border-radius: 6px;
+  border-left: 5px solid gold;
+  border-top: 5px solid gold;
+  border-bottom: 5px solid gold;
+}
+.text-input input {
+  width: 100%;
+  line-height: 0.8cm;
+  padding: 17px;
+  padding-left: 55px;
+  width: 300px;
+  border: 1px solid #f5f5f5;
+  font-size: 13px;
+  color: gray;
+
+  background-repeat: no-repeat;
+  background-position: left center;
+  outline: 0;
+}
+.text-input ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.text-input li {
+  text-decoration: none;
+  border-bottom: 3px solid white;
+  color: white;
+  line-height: 2cm;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.text-input li:hover {
+  color: gold;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 20px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.menu {
+  display: none;
+}
+.error {
+  color: red;
+}
+@media screen and (max-width: 800px) {
+  .text-input-hidden {
+    display: none;
+  }
+  .text-input {
+    position: absolute;
+    width: 4.5cm;
+    z-index: 2;
+  }
+  .text-input input {
+    width: 2.55cm;
+  }
+  .menu {
+    display: block;
+    position: absolute;
+    top: 13px !important;
+  }
+  .hamburger-icon {
+    width: 45px;
+    fill: #e0e0e0;
+  }
+  .map {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .heading {
+    font-size: medium;
+    padding: 1em;
+  }
+  .menu {
+    top: 0 !important;
+  }
+}
+li:focus {
+  background-color: #9f8ef9;
+}

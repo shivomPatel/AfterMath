@@ -1,0 +1,68 @@
+.searchbar {
+  border-radius: 6px;
+  margin: 0px 0px 90px 0px;
+  background: white;
+}
+
+.location-search-input {
+  width: 100%;
+}
+
+.searchbar input {
+  background: transparent;
+  border: 0;
+  font-size: 20px;
+  color: black;
+  height: 40px;
+  border-bottom: 0.7px solid black;
+}
+
+.search-btn {
+  display: inline;
+}
+
+.suggestion {
+  color: black;
+}
+
+.suggestions {
+  border-top: 1px solid rgb(255, 255, 255);
+}
+
+.suggestions > div {
+  padding: 10px;
+  font-size: 18px;
+
+  color: black;
+}
+
+.suggestions > div:hover {
+  background-color: #1e4dd4;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.category-title {
+  width: 60%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.column1 {
+  float: left;
+  width: 40%;
+  height: auto;
+  padding-left: 20px;
+}
+
+.column2 {
+  float: left;
+  width: 60%;
+  height: auto;
+}
