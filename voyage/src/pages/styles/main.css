@@ -44,8 +44,8 @@ body {
 }
 
 .card {
-  min-width: 500px;
-  height: 460px;
+  min-width: 400px;
+  height: 450px;
   border-radius: 16px;
   background-color: #17141d;
   box-shadow: -1rem 0 3rem #000;
@@ -53,10 +53,14 @@ body {
   flex-direction: column;
   padding: 1.5rem;
   transition: 0.2s;
+  align-items: flex-end;
+  position: relative;
 }
 
-.date {
-  color: #8a8a8a;
+.images {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
 }
 
 .tags {
@@ -82,6 +86,10 @@ body {
 .card .article-title {
   font-size: 20px;
   font-weight: 700;
+}
+
+.article-title:hover {
+  color: gold;
 }
 
 .card .article-header {
@@ -114,10 +122,7 @@ body {
 }
 
 .mapbox {
-  /* background-color: rgb(54, 54, 54); */
   border-radius: 6px;
-  /* border: 5px solid white; */
-  /* margin: 20px; */
 }
 
 .bg {
@@ -168,16 +173,10 @@ li {
   box-sizing: border-box;
 }
 
-.column1 {
+.column-m {
   float: left;
-  width: 45%;
+  width: 50%;
   padding: 10px;
-  margin-left: 20px;
-}
-.column2 {
-  float: left;
-  width: 45%;
-  padding-left: 10px;
 }
 
 .c2 {
@@ -191,11 +190,8 @@ li {
   clear: both;
 }
 
-@media screen and (max-width: 600px) {
-  .column1 {
-    width: 100%;
-  }
-  .column2 {
+@media screen and (max-width: 900px) {
+  .column-m {
     width: 100%;
   }
 }

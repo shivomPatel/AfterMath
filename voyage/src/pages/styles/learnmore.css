@@ -28,10 +28,6 @@
   background-color: white;
 }
 
-.image {
-  border: 10px solid black;
-}
-
 .article-section {
   background-color: black;
   color: gold;
@@ -44,4 +40,23 @@
 
 .articles {
   font-size: 12pt;
+}
+
+/* Image Gallery */
+
+.gallery {
+  margin: 10px 50px;
+}
+
+.gallery,
+.image {
+  border: 10px solid black;
+  transition: 1s;
+  padding: 15px;
+  width: 200px;
+}
+
+.gallery .image:hover {
+  filter: grayscale(100%);
+  transform: scale(1.1);
 }

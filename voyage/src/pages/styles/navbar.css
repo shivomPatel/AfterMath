@@ -2,7 +2,8 @@
   list-style-type: none;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: rgb(32, 32, 32);
+  border-radius: 3px;
 }
 
 .list-item {
@@ -36,15 +37,15 @@
   font-weight: lighter;
   padding-left: 30px;
   padding-right: 30px;
-  padding-top: 10px;
   margin-top: 3px;
   margin-bottom: 3px;
   margin-left: 30px;
   margin-right: 30px;
+  color: white;
 }
 
 .logo-icon {
-  font-size: 30pt;
+  font-size: 33pt;
   margin-right: 10px;
 }
 

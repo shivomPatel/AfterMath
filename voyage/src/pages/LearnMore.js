@@ -83,14 +83,43 @@ class LearnMore extends Component {
     });
   };
 
-  renderImages() {}
+  renderImages() {
+    let arr = [];
+    for (var i = 0; i < this.state.imgs.length; i++) {
+      let image = this.state.imgs[i];
+      arr.push(
+        <img
+          className="image"
+          style={{ margin: "12px", width: itemWidth }}
+          src={image.urls.regular}
+          key={image.id}
+          alt="images of the chosen place"
+        />
+      );
+    }
+    {
+      /* this.state.imgs.map((image) => {
+              return (
+                <img
+                  className="image"
+                  style={{ margin: "12px", width: itemWidth }}
+                  src={image.urls.regular}
+                  key={image.id}
+                  alt="images of the chosen place"
+                />
+              );
+            } */
+    }
+    // return arr;
+    return arr;
+  }
 
   render() {
     if (this.state.imgs.articles === 0) {
       return <button>Learnmore</button>;
     } else {
       return (
-        <div className="background">
+        <div>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link
@@ -102,17 +131,7 @@ class LearnMore extends Component {
           <Navbar items={["u", "u", "u", "u"]}></Navbar>
           <div style={unsplashStyle}>
             <h2 className="place-title">{this.state.place}</h2>
-            {this.state.imgs.map((image) => {
-              return (
-                <img
-                  className="image"
-                  style={{ margin: "12px", width: itemWidth }}
-                  src={image.urls.regular}
-                  key={image.id}
-                  alt="images of the chosen place"
-                />
-              );
-            })}
+            {this.renderImages()}
 
             <div align="left">
               <h2 className="article-section">Articles</h2>

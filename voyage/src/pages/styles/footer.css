@@ -48,3 +48,12 @@ footer {
 .text-uppercase {
   color: gold;
 }
+
+@media screen and (max-width: 900px) {
+  .col-md-4 {
+    width: 100%;
+  }
+  .col-md-4 {
+    width: 100%;
+  }
+}

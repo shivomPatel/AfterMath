@@ -4,11 +4,11 @@ import LearnMore from "./LearnMore";
 import Map from "./Map";
 import { Route } from "react-router-dom";
 import Navbar from "./navbar";
-import "./styles/main.css";
-import "./styles/map.css";
 import DatatablePage from "./Table";
 import Preloader from "./Preloader";
 import Footer from "./footer";
+import "./styles/main.css";
+import "./styles/map.css";
 
 const places = [
   {
@@ -102,6 +102,7 @@ class Main extends Component {
   };
 
   componentDidMount() {
+    // US Data
     let requestURL =
       "https://api.apify.com/v2/key-value-stores/moxA3Q0aZh5LosewB/records/LATEST?disableRedirect=true";
     let request = new XMLHttpRequest();
@@ -114,6 +115,16 @@ class Main extends Component {
         arr[i] = virusByState[i];
       }
     };
+
+    // World Data
+    // requestURL = "https://www.trackcorona.live/api/countries";
+    // request = new XMLHttpRequest();
+    // request.open("GET", requestURL);
+    // request.responseType = "json";
+    // request.send();
+    // request.onload = function () {
+    //   console.log(request.response);
+    // };
   }
 
   renderPlaces() {
@@ -122,15 +133,23 @@ class Main extends Component {
       placeCards.push(
         <div className="card">
           <header className="article-header">
-            <div className="article-title">{places[i].place}</div>
+            <a href={"/learnmore?name=" + places[i].place}>
+              <div className="article-title">{places[i].place}</div>
+            </a>
+
             <div>
-              <div className="category-title">
+              <div>
                 Info:
-                <span className="date"> {places[i].description}</span>
+                <p> {places[i].description}</p>
               </div>
             </div>
             <div>
-              <img src={places[i].imageuURL} width="475" height="300" />
+              <img
+                className="images"
+                src={places[i].imageuURL}
+                width="375"
+                height="230"
+              />
             </div>
           </header>
         </div>
@@ -153,7 +172,7 @@ class Main extends Component {
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         <div>
-          <Navbar items={["active", "u", "u", "u"]} />
+          <Navbar items={["active", "u", "u", "u", "u"]} />
           <div className="pagebody">
             <div className="container-fluid">
               <div className="rows">
@@ -185,8 +204,7 @@ class Main extends Component {
 
                 <h2 className="covid-title">COVID-19 Update</h2>
                 <div class="row">
-                  <div class="column1">
-                    {/* <div className="covid-container"> */}
+                  <div class="column-m">
                     <h3>Center of Disease Control Travel Considerations</h3>
                     <p className="considerations-p">
                       "Travel increases your chances of getting and spreading
@@ -219,7 +237,7 @@ class Main extends Component {
                       </li>
                       <li>
                         <span className="consideration-item">
-                          Bus or train travel:{" "}
+                          Bus or train travel:
                         </span>
                         Traveling on buses and trains for any length of time can
                         involve sitting or standing within 6 feet of others.
@@ -246,7 +264,7 @@ class Main extends Component {
                       </a>
                     </p>
                   </div>
-                  <div class="column2">
+                  <div class="column-m">
                     <div class="covid-table">
                       <DatatablePage items={arr} />
                     </div>
