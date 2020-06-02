@@ -35,7 +35,8 @@ function Navbar({ items }) {
           </li>
           <li className="list-item">
             <a class={items[1]} href="/Trips">
-              <FontAwesomeIcon className="ic" icon={faSuitcaseRolling} /> Trips
+              <FontAwesomeIcon className="ic" icon={faSuitcaseRolling} />
+              Trip Builder
             </a>
           </li>
           <li className="list-item">

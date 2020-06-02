@@ -1,6 +1,6 @@
 .background {
   background: black;
-  height: 100vh;
+  min-height: 100%;
 }
 
 /* Columns */
@@ -29,4 +29,25 @@
   .column-b {
     width: 100%;
   }
+}
+
+/* Cards Display */
+
+.card-b {
+  background-color: rgb(40, 40, 56);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.b2 {
+  margin-left: 10px;
+  color: white;
+  background: rgb(126, 0, 0);
+  padding-left: 20px;
+}
+
+.rating {
+  color: gold;
 }

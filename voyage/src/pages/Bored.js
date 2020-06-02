@@ -1,34 +1,97 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import Searchbar from "./searchbar";
+import axios from "axios";
 import "./styles/bored.css";
 
+let arr = [];
+
+const zomato_key = "a709f309de1a20ac8da79907af27d37c";
 class Bored extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: null,
-      long: null,
+      restaurants: [],
     };
   }
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition((position) =>
-      this.setState({
-        lat: position.coords.latitude,
-        long: position.coords.longitude,
-      })
-    );
 
-    let requestURL = "https://www.trackcorona.live/api/countries";
-    let request = new XMLHttpRequest();
-    request.open("GET", requestURL);
-    request.responseType = "json";
-    request.send();
-    request.onload = function () {
-      console.log(request);
-    };
+  createRestaurants = async (data) => {
+    console.log(data);
+    let res = [];
+    for (var i = 0; i < data.nearby_restaurants.length; i++) {
+      res.push(
+        <div class="card-b">
+          <div class="card-body">
+            <h4>{data.nearby_restaurants[i].restaurant.name}</h4>
+            <h6>{data.nearby_restaurants[i].restaurant.cuisines}</h6>
+            <p class="card-text">
+              <span className="rating">Rating: </span>
+              {
+                data.nearby_restaurants[i].restaurant.user_rating
+                  .aggregate_rating
+              }
+              /5.0
+            </p>
+            <a
+              href={data.nearby_restaurants[i].restaurant.url}
+              class="btn btn-primary"
+            >
+              Visit Website
+            </a>
+            <a
+              href={data.nearby_restaurants[i].restaurant.menu_url}
+              class="btn b2"
+            >
+              Menu
+            </a>
+          </div>
+        </div>
+      );
+    }
+    this.setState({
+      restaurants: res,
+    });
+  };
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      let lat = position.coords.latitude;
+      let lng = position.coords.longitude;
+      const response = await axios({
+        method: "GET",
+        url: `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lng}`,
+        headers: {
+          "user-key": zomato_key,
+          "content-type": "application/json",
+        },
+      });
+      this.createRestaurants(response.data);
+    });
   }
+
+  renderRestaurants() {
+    let res = [];
+    for (var i = 0; i < 10; i++) {
+      res.push(
+        // <div class="card" style="width: 18rem;">
+        <div class="card-b">
+          <img class="card-img-top" src="..." alt="Card image cap" />
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a href="#" class="btn btn-primary">
+              Go somewhere
+            </a>
+          </div>
+        </div>
+      );
+    }
+    return res;
+  }
+
   render() {
     return (
       <div>
@@ -57,6 +120,8 @@ class Bored extends Component {
                 containing Lorem Ipsum passages, and more recently with desktop
                 publishing software like Aldus PageMaker including versions of
                 Lorem Ipsum.
+                {"  "}
+                {this.state.restaurants}
               </p>
             </div>
             <div class="column-b">

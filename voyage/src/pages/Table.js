@@ -537,7 +537,7 @@ class DatatablePage extends Component {
       ],
       rows: this.state.stateCases,
     };
-    console.log(data2);
+    // console.log(data2);
 
     return data2;
   };
