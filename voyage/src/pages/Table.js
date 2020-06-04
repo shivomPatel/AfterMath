@@ -545,6 +545,7 @@ class DatatablePage extends Component {
   render() {
     return (
       <div>
+        <h3>COVID-19 Cases Information Table</h3>
         <p>Updated every 5 mins</p>
         <MDBDataTable bordered small data={this.setData()}></MDBDataTable>
       </div>

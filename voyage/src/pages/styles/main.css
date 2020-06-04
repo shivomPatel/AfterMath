@@ -17,9 +17,14 @@
   font-size: 20pt;
   font-weight: lighter;
 }
+
 .logo {
   font-family: Lato;
   font-weight: bolder;
+}
+
+.info {
+  color: gold;
 }
 
 * {
@@ -179,8 +184,12 @@ li {
 
 .column-m {
   float: left;
-  width: 50%;
+  width: 45%;
   padding: 10px;
+}
+
+.col-m1 {
+  margin-left: 20px;
 }
 
 .c2 {

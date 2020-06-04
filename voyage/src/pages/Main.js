@@ -23,7 +23,7 @@ const places = [
     imageuURL:
       "https://www.roughguides.com/wp-content/uploads/2016/10/arenal-volcano-costa-rica-shutterstock_1337924888.jpg",
     description:
-      "The beautiful country, filled with rainforests, beaches, river valleys, and biodiverse wildlife as well as restaurants, bars, and luxe hotels, has always been a great place to take a vacation, but it has gained popularity as an amazing destination in the last few years.",
+      "This beautiful country, filled with rainforests, beaches, river valleys, and biodiverse wildlife as well as restaurants, bars, and luxe hotels, has always been a great place to take a vacation, but it has gained popularity as an amazing destination in the last few years.",
   },
   {
     place: "Hawaii",
@@ -172,10 +172,9 @@ class Main extends Component {
             <a href={"/learnmore?name=" + places[i].place}>
               <div className="article-title">{places[i].place}</div>
             </a>
-
             <div>
               <div>
-                Info:
+                <span className="info">Info: </span>
                 <p> {places[i].description}</p>
               </div>
             </div>
@@ -238,9 +237,9 @@ class Main extends Component {
                   </div>
                 </div>
 
-                <h2 className="covid-title">COVID-19 Update</h2>
+                <h2 className="covid-title">COVID-19 Travel Check</h2>
                 <div class="row">
-                  <div class="column-m">
+                  <div class="column-m col-m1">
                     <h3>Center of Disease Control Travel Considerations</h3>
                     <p className="considerations-p">
                       "Travel increases your chances of getting and spreading

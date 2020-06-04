@@ -1,4 +1,4 @@
-.background {
+.backgroun {
   background: black;
   min-height: 100%;
 }
@@ -12,6 +12,14 @@
   float: left;
   width: 33.3%;
   padding: 15px;
+  min-height: 80vh;
+}
+
+.column-b-2 {
+  float: left;
+  width: 66.6%;
+  padding: 15px;
+  min-height: 80vh;
 }
 
 .row-b {
@@ -27,6 +35,9 @@
 
 @media screen and (max-width: 900px) {
   .column-b {
+    width: 100%;
+  }
+  .column-b-2 {
     width: 100%;
   }
 }
@@ -49,5 +60,53 @@
 }
 
 .rating {
+  color: gold;
+}
+
+.types {
+  color: white;
+  background-color: rgb(17, 207, 0);
+  margin-left: 6px;
+  margin-right: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-radius: 6px;
+  display: inline-block;
+  border: 2px solid rgb(29, 28, 28);
+}
+
+.event-title {
+  padding-bottom: 5px;
+}
+
+.event-taxes {
+  padding-bottom: 5px;
+}
+
+.open {
+  color: rgb(51, 199, 51);
+}
+
+.closed {
+  color: red;
+}
+
+.event-date {
+  color: rgb(51, 105, 255);
+  float: right;
+  margin-top: 5px;
+  font-size: 13pt;
+  margin-right: 7px;
+}
+
+.event-location {
+  text-align: right;
+  font-size: 11pt;
+  margin-right: 7px;
+}
+
+.column-title {
   color: gold;
 }
