@@ -27,9 +27,10 @@ class LearnMore extends Component {
 
   componentDidMount() {
     const query = window.location.search.split("=")[1];
+    var _place = query.replace(/%20/g, " ");
 
     this.setState({
-      place: query,
+      place: _place,
     });
     // unsplash API/Access key (may or may not be used): wgDscHe3K0f4aePI2sk19ypxziteaGHWJISitjiB-aY
     fetch(`https://api.unsplash.com/search/photos?page=1&query=${query}`, {
@@ -110,7 +111,6 @@ class LearnMore extends Component {
               );
             } */
     }
-    // return arr;
     return arr;
   }
 

@@ -1,4 +1,127 @@
-.background {
-  background-image: black;
-  height: 100vh;
+.tripbuilder-bg {
+  background-image: linear-gradient(316deg, #ffc857 0%, #121213 74%);
+}
+
+.background-trips-body {
+  height: 80vh;
+  margin-right: 10%;
+  margin-left: 10%;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  margin-bottom: 40px;
+  border-radius: 6px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2),
+    0 20px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.builder-btn {
+  background-color: rgb(26, 25, 25);
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-radius: 6px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  color: white;
+  font-size: 15px;
+  border: 1px solid white;
+  box-shadow: 0 0 5px black;
+  -moz-box-shadow: 0 0 5px black;
+  -webkit-box-shadow: 0 0 5px black;
+  -o-box-shadow: 0 0 5px black;
+}
+
+.builder-btn:hover {
+  background-color: gold;
+  color: white;
+  transition: 0.3s;
+}
+
+.trips-box {
+  background-color: rgb(26, 25, 25);
+  text-align: center;
+  height: 300px;
+  margin-top: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-top: 10px;
+  border-radius: 6px;
+  color: black;
+  border: 1px solid white;
+  box-shadow: 0 0 5px black;
+  -moz-box-shadow: 0 0 5px black;
+  -webkit-box-shadow: 0 0 5px black;
+  -o-box-shadow: 0 0 5px black;
+}
+
+.trip {
+  border-bottom: 1px solid rgb(204, 204, 204);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 3%;
+  margin-left: 3%;
+  font-size: 15px;
+}
+
+.trip:hover {
+  background-color: rgb(136, 135, 135);
+  border-radius: 5px;
+}
+
+.route-icon {
+  font-size: 300pt;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 12%;
+  padding-bottom: 30px;
+}
+.column-tr-1 {
+  width: 50%;
+}
+
+.column-tr-2 {
+  width: 50%;
+}
+
+@media screen and (max-width: 1000px) {
+  .route-icon {
+    color: transparent;
+  }
+  .column-tr-2 {
+    width: 100%;
+  }
+}
+
+.build-title {
+  margin-left: 30px;
+  color: white;
+  padding-bottom: 20px;
+}
+
+.trips-title {
+  margin-left: 30px;
+  color: aliceblue;
+}
+
+.trip-form {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.753);
+}
+
+.form-layer {
+  margin-left: 15%;
+  margin-right: 15%;
+  padding-top: 30px;
+}
+
+.labels {
+  color: white;
+}
+
+.feather-icon {
+  font-size: 40pt;
+}
+
+.createTrip-title {
+  color: gold;
 }

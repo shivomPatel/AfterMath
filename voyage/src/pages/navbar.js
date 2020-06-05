@@ -8,7 +8,6 @@ import {
   faList,
   faSuitcaseRolling,
   faTachometerAlt,
-  faQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar({ items }) {
@@ -34,7 +33,7 @@ function Navbar({ items }) {
             </a>
           </li>
           <li className="list-item">
-            <a class={items[1]} href="/Trips">
+            <a class={items[1]} href="/TripBuilder">
               <FontAwesomeIcon className="ic" icon={faSuitcaseRolling} />
               Trip Builder
             </a>
@@ -51,12 +50,12 @@ function Navbar({ items }) {
               Events
             </a>
           </li>
-          <li className="list-item">
+          {/* <li className="list-item">
             <a class={items[4]} href="/Bored">
               <FontAwesomeIcon className="ic" icon={faQuestion} />
               Bored
             </a>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>
