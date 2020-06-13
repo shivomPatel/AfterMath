@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./styles/learnmore.css";
 import Navbar from "./navbar";
 import Footer from "./footer";
+import Gallery from "react-grid-gallery";
 
 let unsplashStyle = {
   display: "-ms-flexbox",
@@ -97,19 +98,6 @@ class LearnMore extends Component {
           alt="images of the chosen place"
         />
       );
-    }
-    {
-      /* this.state.imgs.map((image) => {
-              return (
-                <img
-                  className="image"
-                  style={{ margin: "12px", width: itemWidth }}
-                  src={image.urls.regular}
-                  key={image.id}
-                  alt="images of the chosen place"
-                />
-              );
-            } */
     }
     return arr;
   }

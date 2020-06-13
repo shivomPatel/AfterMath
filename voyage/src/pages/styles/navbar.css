@@ -1,6 +1,6 @@
 .navbar-line {
   list-style-type: none;
-  /* padding: 0; */
+  padding: 0;
   overflow: hidden;
   background-color: rgb(32, 32, 32);
   border-radius: 3px;

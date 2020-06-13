@@ -17,6 +17,7 @@
     "google-maps-react": "^2.0.6",
     "mdbreact": "^4.27.0",
     "react-bootstrap": "^1.0.1",
+    "react-grid-gallery": "^0.5.5",
     "react-photo-gallery": "^8.0.0",
     "react-places-autocomplete": "^7.2.1",
     "react-redux": "^7.2.0",

@@ -1,0 +1,40 @@
+.add-input {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  width: 40%;
+  border-style: none;
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 5px;
+  font-size: 12pt;
+  color: rgb(129, 127, 127);
+  border-color: rgb(0, 89, 255);
+}
+
+.add-button {
+  margin-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 20px;
+  border-radius: 5px;
+  font-size: 11pt;
+  color: rgb(0, 89, 255);
+  border-color: rgb(0, 89, 255);
+}
+
+.add-button:hover {
+  transform: 1s;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 21px;
+  padding-right: 21px;
+}
+.icon-position {
+  margin-right: 10px;
+}
+.plus-icon > path {
+  margin-right: 10px;
+  font-size: 12pt;
+  color: rgb(0, 89, 255);
+}

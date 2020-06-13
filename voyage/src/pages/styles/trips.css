@@ -3,11 +3,12 @@
 }
 
 .background-trips-body {
-  height: 80vh;
+  height: 85vh;
   margin-right: 10%;
   margin-left: 10%;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 15px;
+  margin-top: 5%;
   margin-bottom: 40px;
   border-radius: 6px;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2),
@@ -74,20 +75,28 @@
   margin-right: 25%;
   margin-top: 12%;
   padding-bottom: 30px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.192);
 }
-.column-tr-1 {
+
+/* .column-tr-1 {
   width: 50%;
 }
 
 .column-tr-2 {
   width: 50%;
+} */
+
+.column-trip {
+  width: 50%;
+  margin-right: -10px;
 }
 
 @media screen and (max-width: 1000px) {
   .route-icon {
     color: transparent;
   }
-  .column-tr-2 {
+  .column-trip {
     width: 100%;
   }
 }
@@ -124,4 +133,30 @@
 
 .createTrip-title {
   color: gold;
+}
+
+.form-control {
+  width: 100%;
+  padding-left: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 5px;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: black;
+  border-radius: 5px;
+  font-size: 10pt;
+}
+
+.btn:hover {
+  transition: 0.3s;
+  background-color: rgb(53, 107, 255);
+  color: white;
 }
