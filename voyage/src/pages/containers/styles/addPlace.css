@@ -2,7 +2,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 15px;
-  width: 40%;
+  width: fit-content;
   border-style: none;
   border: 1px solid rgb(189, 189, 189);
   border-radius: 5px;
@@ -16,7 +16,7 @@
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 15px;
-  padding-right: 20px;
+  padding-right: 15px;
   border-radius: 5px;
   font-size: 11pt;
   color: rgb(0, 89, 255);
@@ -25,10 +25,8 @@
 
 .add-button:hover {
   transform: 1s;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 21px;
-  padding-right: 21px;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2),
+    0 20px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .icon-position {
   margin-right: 10px;
@@ -37,4 +35,12 @@
   margin-right: 10px;
   font-size: 12pt;
   color: rgb(0, 89, 255);
+}
+
+.suggestions {
+  padding: 10px;
+  color: black;
+}
+.suggestion {
+  background-color: indigo;
 }

@@ -29,7 +29,7 @@
   width: 50%;
   height: 1px;
   content: "\a0";
-  background-color: grey;
+  background-color: rgb(53, 107, 255);
 }
 .header:before {
   margin-left: -50%;
@@ -90,4 +90,31 @@
 .arrow-icon > path {
   color: white;
   border: 2px solid black;
+}
+
+.place-strong {
+  color: rgb(53, 107, 255);
+}
+
+/* calendar icon */
+
+.calendar-ico {
+  margin-top: 90px;
+  border: 1px solid rgba(38, 105, 248, 0.829);
+  border-radius: 50%;
+  font-size: 300px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 60px;
+  padding-right: 60px;
+  width: 100px;
+  height: auto;
+}
+
+.calendar-icon-color > path {
+  color: rgba(38, 105, 248, 0.61);
+}
+
+.rating-margin {
+  margin-bottom: 10px;
 }

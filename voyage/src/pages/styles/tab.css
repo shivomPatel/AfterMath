@@ -23,13 +23,13 @@
 .tab-list-item:hover {
   transition: 0.5s;
   font-weight: bold;
-  font-size: 13pt;
+  font-size: 12pt;
   background-color: white;
 }
 
 .tab-list-active {
   background-color: white;
-  color: black;
+  color: rgb(53, 107, 255);
   font-weight: bold;
   border-width: 1px 1px 0 1px;
   -webkit-box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.75);

@@ -9,6 +9,29 @@ import {
 import "./styles/trips.css";
 
 class TripBuilder extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: null,
+      email: null,
+      tripName: null,
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({
+      name: event.target.name.value,
+      email: event.target.email.value,
+      tripName: event.target.tripName.value,
+    });
+    // href={`/creation?name=${this.state.name}&email=${this.state.email}&tripName=${this.state.tripName}`}
+
+    this.props.history.push(
+      `/creation?name=${event.target.name.value}&email=${event.target.email.value}&tripName=${event.target.tripName.value}`
+    );
+  }
   render() {
     return (
       <div className="tripbuilder-bg">
@@ -35,7 +58,7 @@ class TripBuilder extends Component {
               <div className="column-trip">
                 <body className="background-trips-body">
                   <div className="trip-form">
-                    <form className="form-layer">
+                    <form className="form-layer" onSubmit={this.handleSubmit}>
                       <div align="center">
                         <FontAwesomeIcon
                           className="feather-icon"
@@ -55,21 +78,20 @@ class TripBuilder extends Component {
                           id="tripName"
                           aria-describedby="theTripName"
                           placeholder="Enter trip name"
+                          value={this.state.tripName}
                         />
                       </div>
                       <label className="labels" for="name">
                         Name
                       </label>
                       <div class="form-group">
-                        {/* <label className="labels" for="name">
-                          Name
-                        </label> */}
                         <input
                           type="text"
                           class="form-control"
                           id="name"
                           aria-describedby="theName"
                           placeholder="Enter name"
+                          value={this.state.name}
                         />
                       </div>
                       <label className="labels" for="exampleInputEmail1">
@@ -79,20 +101,23 @@ class TripBuilder extends Component {
                         <input
                           type="email"
                           class="form-control"
-                          id="exampleInputEmail1"
+                          id="email"
                           aria-describedby="emailHelp"
                           placeholder="Enter email"
+                          value={this.state.email}
                         />
                       </div>
-
-                      <button type="submit" class="btn btn-primary">
-                        Submit
-                      </button>
+                      <input
+                        class="btn btn-primary"
+                        type="submit"
+                        value="Submit"
+                      />
                     </form>
                   </div>
                 </body>
               </div>
             </div>
+            e
           </div>
         </div>
 

@@ -1,12 +1,12 @@
 import React, { Component, useState } from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
 import Footer from "./footer";
 import Navbar from "./navbar";
 import Tabs from "./Tabs";
 import { GoogleApiWrapper } from "google-maps-react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import ListBox from "./components/ListBox.js";
 import AddTodo from "./containers/AddTodo";
 import VisibleTodoList from "./containers/VisibleTodoList";
 import rootReducer from "./reducers";
@@ -18,10 +18,15 @@ import {
   faHamburger,
   faInfoCircle,
   faPlane,
+  faCalendarAlt,
+  faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/creationmap.css";
 import "./styles/creation.css";
+
 const store = createStore(rootReducer);
+const seat_geek_client_id = "MjEyMDE0MTh8MTU5MTE0NjEzMy45Nw";
+const zomato_key = "a709f309de1a20ac8da79907af27d37c";
 
 class Creation extends Component {
   constructor(props) {
@@ -67,7 +72,9 @@ class Creation extends Component {
       infowindow: new this.props.google.maps.InfoWindow(),
       map: null,
       bounds: null,
-      place: null,
+      add_place: null,
+      nearby_places: [],
+      restaurants: [],
     };
   }
 
@@ -208,6 +215,8 @@ class Creation extends Component {
     this.state.map.setZoom(17);
 
     this.state.map.fitBounds(bounds);
+    this.getNearbyPlaces(newlocation);
+    this.getRestaurants(newlocation);
   };
 
   deletePlace = (e) => {
@@ -240,7 +249,6 @@ class Creation extends Component {
   };
 
   populateInfoWindow = async (marker, infowindow) => {
-    // console.log(marker.position.lat, marker.position.lng);
     if (infowindow.marker !== marker) {
       marker.setAnimation(window.google.maps.Animation.BOUNCE);
       //
@@ -293,12 +301,181 @@ class Creation extends Component {
     }
   };
 
+  createRestaurants = async (data) => {
+    let res = [];
+    for (var i = 0; i < data.nearby_restaurants.length; i++) {
+      res.push(
+        <div class="card-b">
+          <div class="card-body">
+            <h4>{data.nearby_restaurants[i].restaurant.name}</h4>
+            <h6>{data.nearby_restaurants[i].restaurant.cuisines}</h6>
+            <p class="card-text">
+              <span className="rating">Rating: </span>
+              {
+                data.nearby_restaurants[i].restaurant.user_rating
+                  .aggregate_rating
+              }
+              /5.0
+            </p>
+            <a
+              href={data.nearby_restaurants[i].restaurant.url}
+              class="btn btn-primary"
+            >
+              Visit Website
+            </a>
+            <a
+              href={data.nearby_restaurants[i].restaurant.menu_url}
+              class="btn b2"
+            >
+              Menu
+            </a>
+          </div>
+        </div>
+      );
+    }
+    this.setState({
+      restaurants: res,
+    });
+  };
+
+  getRestaurants = async (place) => {
+    if (place != undefined) {
+      let lat = place.location.lat;
+      let lng = place.location.lng;
+      const response = await axios({
+        method: "GET",
+        url: `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lng}`,
+        headers: {
+          "user-key": zomato_key,
+          "content-type": "application/json",
+        },
+      });
+      this.createRestaurants(response.data);
+    }
+  };
+
+  renderRestaurants = () => {
+    if (this.state.restaurants.length != 0) {
+      return (
+        <div>
+          <h2 className="place-length" align="left">
+            Restaurants in{" "}
+            <strong className="place-strong">{this.state.nearby_search}</strong>{" "}
+          </h2>
+          {this.state.restaurants}
+        </div>
+      );
+    } else {
+      return (
+        <div align="center">
+          <h2 className="place-length" align="left">
+            No Restaurants
+          </h2>
+          <FontAwesomeIcon
+            className="calendar-ico calendar-icon-color"
+            icon={faUtensils}
+          ></FontAwesomeIcon>
+          <div className="no-places-title" align="center">
+            <h3 className="nope-title">Make Search to Receive Restaurants</h3>
+          </div>
+        </div>
+      );
+    }
+  };
+
+  getNearbyPlaces = async (place) => {
+    if (place != undefined) {
+      const response = await axios({
+        method: "GET",
+        url: `https://api.seatgeek.com/2/events?lat=${place.location.lat}&lon=${place.location.lng}&range=50mi&client_id=${seat_geek_client_id}`,
+      });
+      let res = [];
+      for (var i = 0; i < response.data.events.length; i++) {
+        let event = response.data.events[i];
+        let taxes = [];
+        let date = new Date(event.datetime_local);
+        for (var j = 0; j < event.taxonomies.length; j++) {
+          taxes.push(
+            <span className="types">{event.taxonomies[j].name} </span>
+          );
+        }
+        res.push(
+          <div class="card-b">
+            <div class="card-body">
+              <h4 className="event-title">{event.title}</h4>
+              <h5 className="event-taxes">
+                <span>Type: </span>
+                {taxes}
+              </h5>
+              <h5>
+                <span>Popularity: </span>
+                <span className="popularity">
+                  {(event.popularity * 100).toFixed(2)}%{" "}
+                </span>
+              </h5>
+              <h5 className="event-taxes">
+                <span>
+                  Open:{" "}
+                  {event.is_open ? (
+                    <span className="open">Yes</span>
+                  ) : (
+                    <span className="closed">No</span>
+                  )}
+                </span>
+              </h5>
+              <p className="event-location">
+                {event.venue.address}, {event.venue.display_location}
+              </p>
+              <a href={event.url} class="btn btn-primary">
+                Visit Website
+              </a>
+              <span className="event-date">{date.toDateString()}</span>
+            </div>
+          </div>
+        );
+      }
+      this.setState({
+        nearby_search: place.name,
+        nearby_places: res,
+      });
+    } else {
+    }
+  };
+
+  renderNearbyPlaces() {
+    if (this.state.nearby_places.length != 0) {
+      return (
+        <div>
+          <h2 className="place-length" align="left">
+            Events in{" "}
+            <strong className="place-strong">{this.state.nearby_search}</strong>{" "}
+          </h2>
+          {this.state.nearby_places}
+        </div>
+      );
+    }
+    return (
+      <div align="center">
+        <h2 className="place-length" align="left">
+          No Events
+        </h2>
+        <FontAwesomeIcon
+          className="calendar-ico calendar-icon-color"
+          icon={faCalendarAlt}
+        ></FontAwesomeIcon>
+        <div className="no-places-title" align="center">
+          <h3 className="nope-title">Make Search to Receive Events</h3>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { locations, newLocations } = this.state;
     let input;
     return (
       <div>
-        <Navbar items={["u", "u", "u", "u"]} />
+        <Navbar className="navbar-position" items={["u", "u", "u", "u"]} />
         <div className="row creation-row">
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -334,13 +511,15 @@ class Creation extends Component {
                 </div>
                 <div
                   className="tab-content"
-                  label="Nearby Places"
+                  label="Events"
                   marker={faMapMarkerAlt}
                 >
                   <h2 className="header"> // </h2>
+                  {this.renderNearbyPlaces()}
                 </div>
                 <div className="tab-content" label="Food" marker={faHamburger}>
                   <h2 className="header"> // </h2>
+                  {this.renderRestaurants()}
                 </div>
                 <div
                   className="tab-content"
@@ -363,7 +542,7 @@ class Creation extends Component {
             ></input>
             <span>
               <Provider store={store}>
-                <AddTodo place={"hello"} />
+                <AddTodo place={this.state.place} />
               </Provider>
             </span>
             <div className="container">

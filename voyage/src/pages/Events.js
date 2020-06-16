@@ -5,8 +5,8 @@ import axios from "axios";
 import "./styles/events.css";
 
 const seat_geek_client_id = "MjEyMDE0MTh8MTU5MTE0NjEzMy45Nw";
-
 const zomato_key = "a709f309de1a20ac8da79907af27d37c";
+
 class Events extends Component {
   constructor(props) {
     super(props);

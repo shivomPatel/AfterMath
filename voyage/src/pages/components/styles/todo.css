@@ -25,3 +25,24 @@
   margin-left: 5px;
   font-size: 20pt;
 }
+
+.delete-button {
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+  font-size: 14pt;
+  background: rgb(238, 236, 236);
+  border-radius: 50%;
+  border-style: none;
+  display: inline-block;
+  padding-top: 3px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.trash-icon-color > path {
+  color: rgb(75, 74, 74);
+}

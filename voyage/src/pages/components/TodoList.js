@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import "./styles/todolist.css";
 
-const TodoList = ({ todos, toggleTodo }) => {
+const TodoList = ({ todos, removeTodo }) => {
   if (todos.length == 0)
     return (
       <div align="center">
@@ -21,7 +21,7 @@ const TodoList = ({ todos, toggleTodo }) => {
         </div>
       </div>
     );
-  let count = 0;
+  let count = 1;
   return (
     <div>
       <h2 className="place-length" align="left">
@@ -32,9 +32,9 @@ const TodoList = ({ todos, toggleTodo }) => {
           return (
             <Todo
               index={count++}
-              key={todo.id}
+              // key={todo.id}
               {...todo}
-              onClick={() => toggleTodo(todo.id)}
+              onClick={() => removeTodo(todo.id)}
             />
           );
         })}

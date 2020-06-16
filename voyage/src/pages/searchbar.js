@@ -50,6 +50,7 @@ export default function Searchbar() {
               {suggestions.map((suggestion) => {
                 const style = {
                   backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                  left: "10px",
                 };
 
                 return (
