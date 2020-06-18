@@ -3,13 +3,9 @@ import PropTypes from "prop-types";
 import "./styles/todo.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import Modal from "../Modal";
-
-const customId = "custom-id-yes";
+// import Modal from "../Modal";
 
 const Todo = ({ index, onClick, completed, text }) => {
-  const [showing, setShowing] = useState(false);
-
   return (
     <div>
       <FontAwesomeIcon

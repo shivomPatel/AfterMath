@@ -70,22 +70,19 @@
 }
 
 .route-icon {
-  font-size: 300pt;
-  margin-left: 25%;
+  font-size: 200pt;
+  margin-left: 35%;
   margin-right: 25%;
-  margin-top: 12%;
-  padding-bottom: 30px;
+  margin-top: 25%;
+  padding: 60px;
+  border: 2px solid rgb(0, 132, 255);
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.192);
 }
 
-/* .column-tr-1 {
-  width: 50%;
+.route-icon-color > path {
+  color: rgb(255, 219, 16);
 }
-
-.column-tr-2 {
-  width: 50%;
-} */
 
 .column-trip {
   width: 50%;

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
-import Footer from "./footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDraftingCompass,
@@ -19,18 +18,44 @@ class TripBuilder extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  validateEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  isValidCredentials(name, email, trip) {
+    if (
+      name.localeCompare("") === 0 ||
+      email.localeCompare("") === 0 ||
+      trip.localeCompare("") === 0
+    ) {
+      return false;
+    }
+    return this.validateEmail(email);
+  }
+
   handleSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
+    var name = event.target.name.value;
+    var email = event.target.email.value;
+    var tripName = event.target.tripName.value;
     this.setState({
-      name: event.target.name.value,
-      email: event.target.email.value,
-      tripName: event.target.tripName.value,
+      name: name,
+      email: email,
+      tripName: tripName,
     });
     // href={`/creation?name=${this.state.name}&email=${this.state.email}&tripName=${this.state.tripName}`}
 
-    this.props.history.push(
-      `/creation?name=${event.target.name.value}&email=${event.target.email.value}&tripName=${event.target.tripName.value}`
-    );
+    var isValid = this.isValidCredentials(name, email, tripName);
+
+    if (isValid) {
+      this.props.history.push(
+        `/creation?name=${name}&email=${email}&tripName=${tripName}`
+      );
+    } else {
+      window.alert("Unfit Credentials.");
+      this.props.history.push("/tripbuilder");
+    }
   }
   render() {
     return (
@@ -51,7 +76,7 @@ class TripBuilder extends Component {
             <div class="row">
               <div className="column-trip">
                 <FontAwesomeIcon
-                  className="route-icon"
+                  className="route-icon route-icon-color"
                   icon={faDraftingCompass}
                 />
               </div>
@@ -117,11 +142,8 @@ class TripBuilder extends Component {
                 </body>
               </div>
             </div>
-            e
           </div>
         </div>
-
-        {/* <Footer /> */}
       </div>
     );
   }

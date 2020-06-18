@@ -1,7 +1,7 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-import Footer from "./footer";
+// import Footer from "./footer";
 import Navbar from "./navbar";
 import Tabs from "./Tabs";
 import { GoogleApiWrapper } from "google-maps-react";
@@ -9,6 +9,7 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import AddTodo from "./containers/AddTodo";
 import VisibleTodoList from "./containers/VisibleTodoList";
+import CovidChart from "./CovidChart";
 import rootReducer from "./reducers";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +21,7 @@ import {
   faPlane,
   faCalendarAlt,
   faUtensils,
+  faStreetView,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/creationmap.css";
 import "./styles/creation.css";
@@ -217,6 +219,8 @@ class Creation extends Component {
     this.state.map.fitBounds(bounds);
     this.getNearbyPlaces(newlocation);
     this.getRestaurants(newlocation);
+    this.getCOVIDData(newlocation);
+    console.log(newlocation);
   };
 
   deletePlace = (e) => {
@@ -300,7 +304,7 @@ class Creation extends Component {
       });
     }
   };
-
+  // Restaurant Managers
   createRestaurants = async (data) => {
     let res = [];
     for (var i = 0; i < data.nearby_restaurants.length; i++) {
@@ -337,9 +341,8 @@ class Creation extends Component {
       restaurants: res,
     });
   };
-
   getRestaurants = async (place) => {
-    if (place != undefined) {
+    if (place !== undefined) {
       let lat = place.location.lat;
       let lng = place.location.lng;
       const response = await axios({
@@ -353,9 +356,8 @@ class Creation extends Component {
       this.createRestaurants(response.data);
     }
   };
-
   renderRestaurants = () => {
-    if (this.state.restaurants.length != 0) {
+    if (this.state.restaurants.length !== 0) {
       return (
         <div>
           <h2 className="place-length" align="left">
@@ -382,9 +384,11 @@ class Creation extends Component {
       );
     }
   };
+  // end of Restaurant Managers
 
+  // Events Managers
   getNearbyPlaces = async (place) => {
-    if (place != undefined) {
+    if (place !== undefined) {
       const response = await axios({
         method: "GET",
         url: `https://api.seatgeek.com/2/events?lat=${place.location.lat}&lon=${place.location.lng}&range=50mi&client_id=${seat_geek_client_id}`,
@@ -410,7 +414,10 @@ class Creation extends Component {
               <h5>
                 <span>Popularity: </span>
                 <span className="popularity">
-                  {(event.popularity * 100).toFixed(2)}%{" "}
+                  {/* {(event.popularity * 100).toFixed(2)}%{" "} */}
+                  {event.popularity === 0
+                    ? "No Rating"
+                    : (event.popularity * 100).toFixed(2) + "%"}
                 </span>
               </h5>
               <h5 className="event-taxes">
@@ -441,9 +448,8 @@ class Creation extends Component {
     } else {
     }
   };
-
   renderNearbyPlaces() {
-    if (this.state.nearby_places.length != 0) {
+    if (this.state.nearby_places.length !== 0) {
       return (
         <div>
           <h2 className="place-length" align="left">
@@ -469,9 +475,31 @@ class Creation extends Component {
       </div>
     );
   }
+  // End of Event Managers
 
+  // Covid Info Managers
+  getCOVIDData = (place) => {};
+
+  renderCOVIDData = () => {
+    return (
+      <div align="center" className="covid-chart-bg">
+        {/* <h2 className="place-length" align="left">
+          Data Unavailable
+        </h2>
+        <FontAwesomeIcon
+          className="covid-ico covid-icon-color"
+          icon={faStreetView}
+        ></FontAwesomeIcon>
+        <div className="no-places-title" align="center">
+          <h3 className="nope-title">Make Search to Receive COVID-19 Info</h3>
+        </div> */}
+        <CovidChart />
+      </div>
+    );
+  };
+
+  // End of Covid Info Managers
   render() {
-    const { locations, newLocations } = this.state;
     let input;
     return (
       <div>
@@ -479,11 +507,6 @@ class Creation extends Component {
         <div className="row creation-row">
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          {/* <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-        ></link> */}
-
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
           <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -504,7 +527,7 @@ class Creation extends Component {
             <div className="tab-comp">
               <Tabs>
                 <div className="tab-content" label="Trip Plan" marker={faPlane}>
-                  <h2 className="header"> // </h2>
+                  <h2 className="header"> {"//"} </h2>
                   <Provider store={store}>
                     <VisibleTodoList />
                   </Provider>
@@ -514,20 +537,21 @@ class Creation extends Component {
                   label="Events"
                   marker={faMapMarkerAlt}
                 >
-                  <h2 className="header"> // </h2>
+                  <h2 className="header"> {"//"} </h2>
                   {this.renderNearbyPlaces()}
                 </div>
                 <div className="tab-content" label="Food" marker={faHamburger}>
-                  <h2 className="header"> // </h2>
+                  <h2 className="header"> {"//"} </h2>
                   {this.renderRestaurants()}
                 </div>
-                <div
+                {/* <div
                   className="tab-content"
                   label="COVID-19 Info"
                   marker={faInfoCircle}
                 >
-                  <h2 className="header"> // </h2>
-                </div>
+                  <h2 className="header"> {"//"} </h2>
+                  {this.renderCOVIDData()}
+                </div> */}
               </Tabs>
             </div>
           </div>
@@ -554,6 +578,9 @@ class Creation extends Component {
           </div>
 
           {/* <Footer /> */}
+        </div>
+        <div align="center" className="covid-chart-bg">
+          <CovidChart />
         </div>
       </div>
     );

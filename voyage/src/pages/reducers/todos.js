@@ -1,8 +1,3 @@
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const customId = "custom-id-yes";
-
 const todos = (state = [], action) => {
   switch (action.type) {
     case "ADD_TODO":

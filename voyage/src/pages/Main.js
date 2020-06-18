@@ -5,7 +5,6 @@ import Map from "./Map";
 import { Route } from "react-router-dom";
 import Navbar from "./navbar";
 import DatatablePage from "./Table";
-import Preloader from "./Preloader";
 import Footer from "./footer";
 import "./styles/main.css";
 import "./styles/map.css";
@@ -151,7 +150,6 @@ class Main extends Component {
     request2.responseType = "json";
     request2.send();
     request2.onload = () => {
-      console.log(request2.response);
       for (var i = 0; i < request2.response.data.length; i++) {
         let Range = this.getRange(request2.response.data[i].confirmed);
         arr.push({
@@ -184,6 +182,7 @@ class Main extends Component {
                 src={places[i].imageuURL}
                 width="375"
                 height="230"
+                alt=""
               />
             </div>
           </header>
@@ -238,8 +237,8 @@ class Main extends Component {
                 </div>
 
                 <h2 className="covid-title">COVID-19 Travel Check</h2>
-                <div class="row">
-                  <div class="column-m col-m1">
+                <div className="row">
+                  <div className="column-m col-m1">
                     <h3>Center of Disease Control Travel Considerations</h3>
                     <p className="considerations-p">
                       "Travel increases your chances of getting and spreading
@@ -299,8 +298,8 @@ class Main extends Component {
                       </a>
                     </p>
                   </div>
-                  <div class="column-m">
-                    <div class="covid-table">
+                  <div className="column-m">
+                    <div className="covid-table">
                       <DatatablePage items={arr} />
                     </div>
                   </div>

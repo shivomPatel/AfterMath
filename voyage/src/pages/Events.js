@@ -146,7 +146,6 @@ class Events extends Component {
   }
 
   render() {
-    const { loading_activities, loading_restaurants } = this.state;
     return (
       <div>
         <meta charSet="utf-8" />

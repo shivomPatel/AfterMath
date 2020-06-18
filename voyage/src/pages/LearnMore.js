@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./styles/learnmore.css";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import Gallery from "react-grid-gallery";
 
 let unsplashStyle = {
   display: "-ms-flexbox",

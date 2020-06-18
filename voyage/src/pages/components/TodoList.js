@@ -6,12 +6,13 @@ import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import "./styles/todolist.css";
 
 const TodoList = ({ todos, removeTodo }) => {
-  if (todos.length == 0)
+  if (todos.length === 0)
     return (
       <div align="center">
         <h2 className="place-length" align="left">
-          Places ( <span className="length">{todos.length}</span> )
+          No Places
         </h2>
+        <h3 className="start-title"> Start Your Plan </h3>
         <FontAwesomeIcon
           className="list-icon list-icon-color"
           icon={faListUl}

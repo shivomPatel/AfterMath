@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { GoogleApiWrapper } from "google-maps-react";
+import React from "react";
 import { connect } from "react-redux";
 import { addTodo } from "../actions";
 import "./styles/addPlace.css";
@@ -9,7 +8,7 @@ import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 const AddTodo = ({ place, dispatch }) => {
   let input;
 
-  if (place != undefined) {
+  if (place !== undefined) {
     return (
       <div>
         <form
