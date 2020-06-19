@@ -1,0 +1,93 @@
+.review-background {
+  /* background: black; */
+  background-image: linear-gradient(to bottom, #292929 30%, #f3f2f2 20%);
+  min-height: 100%;
+  padding-bottom: 30px;
+}
+
+.review-box {
+  background-color: white;
+
+  width: 58rem;
+  min-height: 70rem;
+  padding: 35px;
+}
+
+.review-submission-box {
+  background-color: white;
+  width: 58rem;
+  min-height: fit-content;
+  margin-top: 20px;
+  padding: 35px;
+}
+
+.reviews-title {
+  margin-right: 20px;
+}
+
+.review-description {
+  width: 55rem;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.submit {
+  margin-top: 20px;
+}
+
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+
+.write-button {
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: white;
+  background-color: #fd5a78;
+  font-weight: bold;
+  border-style: none;
+  border-radius: 3px;
+  border-bottom: 3px solid #fd002e;
+  box-shadow: 0 4px 2px -2px gray;
+}
+
+.name-input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 11pt;
+}
+
+.review-input {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+}
+
+.review-input,
+.name-input {
+  color: black;
+  border-radius: 5px;
+  border-style: none;
+  border: 1px solid rgb(211, 208, 208);
+}
+
+.user-review-title {
+  color: black;
+  margin-bottom: 30px;
+}
+
+.average-rating {
+  color: #fd002e;
+}
+
+.average-box {
+  color: #292929;
+}

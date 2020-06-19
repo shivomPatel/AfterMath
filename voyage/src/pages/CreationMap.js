@@ -224,15 +224,7 @@ class CreationMap extends Component {
 
       infowindow.marker = marker;
       infowindow.setContent(
-        `<h2 style="color:black;">${
-          marker.title
-        }</h2><a href='/learnmore?name=${
-          marker.title
-        }'>Learn more</a> <div align="center">${arr.map((image) => {
-          return `<img width=${"380"} height=${"auto"} src=${
-            image.urls.regular
-          } key=${image.id} alt="images of the chosen place"/>`;
-        })}</div>`
+        `<h2 style="color:black;">${marker.title}</h2><a href='/learnmore?name=${marker.title}'>Learn more</a></div>`
       );
 
       this.state.map.panTo(marker.position);

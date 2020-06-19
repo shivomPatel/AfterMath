@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from "./pages/Main";
 import LearnMore from "./pages/LearnMore";
 import TripBuilder from "./pages/TripBuilder";
-import Calendar from "./pages/Calendar";
+import Review from "./pages/Review";
 import Events from "./pages/Events";
 import Creation from "./pages/Creation";
 
@@ -18,7 +18,7 @@ export class App extends Component {
             <Route exact path="/" component={Main} />
             <Route exact path="/learnmore" component={LearnMore} />
             <Route exact path="/tripbuilder" component={TripBuilder} />
-            <Route exact path="/calendar" component={Calendar} />
+            <Route exact path="/Review" component={Review} />
             <Route exact path="/events" component={Events} />
             <Route exact path="/creation" component={Creation} />
           </Switch>

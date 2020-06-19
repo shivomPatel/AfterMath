@@ -119,20 +119,20 @@
   margin-bottom: 10px;
 }
 
-.covid-ico {
+.img-ico {
   margin-top: 90px;
   border: 1px solid rgba(38, 105, 248, 0.829);
   border-radius: 50%;
-  font-size: 260px;
+  font-size: 250px;
   padding-top: 50px;
   padding-bottom: 50px;
   padding-left: 50px;
   padding-right: 50px;
-  width: 100px;
+  width: 90px;
   height: auto;
 }
 
-.covid-icon-color > path {
+.img-icon-color > path {
   color: rgba(38, 105, 248, 0.61);
 }
 

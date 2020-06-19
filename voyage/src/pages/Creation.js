@@ -21,7 +21,7 @@ import {
   faPlane,
   faCalendarAlt,
   faUtensils,
-  faStreetView,
+  faImages,
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/creationmap.css";
 import "./styles/creation.css";
@@ -77,6 +77,7 @@ class Creation extends Component {
       add_place: null,
       nearby_places: [],
       restaurants: [],
+      imgs: [],
     };
   }
 
@@ -219,7 +220,7 @@ class Creation extends Component {
     this.state.map.fitBounds(bounds);
     this.getNearbyPlaces(newlocation);
     this.getRestaurants(newlocation);
-    this.getCOVIDData(newlocation);
+    this.getViews(newlocation);
     console.log(newlocation);
   };
 
@@ -280,17 +281,8 @@ class Creation extends Component {
       let arr = this.state.imgs;
       infowindow.marker = marker;
       infowindow.setContent(
-        '<div style="background-color: black;">' +
-          `<h2 style="color:white; text-align: center; padding-top: 20px;">${
-            marker.title
-          }</h2><div align="center"><a href='/learnmore?name=${
-            marker.title
-          }'>Learn more</a></div> <div align="center">${arr.map((image) => {
-            return `<img style="margin-top: 5px; margin-bottom: 5px;" width=${"380"} height=${"auto"} src=${
-              image.urls.regular
-            } key=${image.id} alt="images of the chosen place"/>`;
-          })}</div>` +
-          "</div>"
+        "<div >" +
+          `<h2 style="color:black; text-align: center; padding-top: 20px;">${marker.title}</h2><div align="center"><a href='/learnmore?name=${marker.title}'>Learn more</a></div>`
       );
 
       this.state.map.panTo(marker.position);
@@ -478,22 +470,68 @@ class Creation extends Component {
   // End of Event Managers
 
   // Covid Info Managers
-  getCOVIDData = (place) => {};
+  getViews = async (place) => {
+    await fetch(
+      `https://api.unsplash.com/search/photos?page=1&query=${place.name}`,
+      {
+        headers: {
+          Authorization:
+            "Client-ID ed4ea3b388f4503fa9a5817e2e5250171fd92b3b61ff520ff9f6027cff251a67",
+        },
+      }
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.setState({
+          imgs: data.results,
+        });
+      })
+      .catch((err) => {
+        console.log("Error happened during fetching!", err);
+      });
+  };
 
-  renderCOVIDData = () => {
+  renderViews = () => {
+    if (this.state.imgs.length !== 0) {
+      let arr = [];
+      for (var i = 0; i < this.state.imgs.length; i++) {
+        var img = this.state.imgs[i];
+        arr.push(
+          <div align="center">
+            <img
+              width="500"
+              height="auto"
+              src={img.urls.regular}
+              key={img.id}
+              alt="images of the chosen place"
+            ></img>
+          </div>
+        );
+      }
+      return (
+        <div>
+          <h2 className="place-length" align="left">
+            Views of{" "}
+            <strong className="place-strong">{this.state.nearby_search}</strong>{" "}
+          </h2>
+          {arr}
+        </div>
+      );
+    }
     return (
-      <div align="center" className="covid-chart-bg">
-        {/* <h2 className="place-length" align="left">
-          Data Unavailable
+      <div align="center">
+        <h2 className="place-length" align="left">
+          Views Unavailable
         </h2>
         <FontAwesomeIcon
-          className="covid-ico covid-icon-color"
-          icon={faStreetView}
+          className="img-ico img-icon-color"
+          icon={faImages}
         ></FontAwesomeIcon>
         <div className="no-places-title" align="center">
-          <h3 className="nope-title">Make Search to Receive COVID-19 Info</h3>
-        </div> */}
-        <CovidChart />
+          <h3 className="nope-title">Make Search to Receive Images</h3>
+        </div>
       </div>
     );
   };
@@ -544,14 +582,14 @@ class Creation extends Component {
                   <h2 className="header"> {"//"} </h2>
                   {this.renderRestaurants()}
                 </div>
-                {/* <div
+                <div
                   className="tab-content"
-                  label="COVID-19 Info"
+                  label="Views"
                   marker={faInfoCircle}
                 >
                   <h2 className="header"> {"//"} </h2>
-                  {this.renderCOVIDData()}
-                </div> */}
+                  {this.renderViews()}
+                </div>
               </Tabs>
             </div>
           </div>
